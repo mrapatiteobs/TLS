@@ -19,7 +19,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Contains the background shimmer */
+    /* Changed to allow vertical scrolling on mobile */
+    overflow-x: hidden; 
     color: var(--main-text);
 }
 
@@ -39,6 +40,7 @@ body {
     margin-top: 60px;
     text-align: center;
     position: relative;
+    width: 100%; /* Ensure header doesn't overflow */
 }
 
 .title-reveal {
@@ -64,8 +66,9 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
     margin-top: 40px;
-    width: 80%;
+    width: 85%;
     max-width: 900px;
+    padding-bottom: 50px; /* Space at the bottom for mobile scrolling */
 }
 
 /* Base Card Styling */
@@ -149,8 +152,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
-
 /* --- Books Page Specifics --- */
 .tagline {
     font-family: 'Space Mono', monospace;
@@ -232,13 +233,6 @@ body {
     transform: translateY(-10px) scale(1.02);
 }
 
-/* Responsive for mobile */
-@media (max-width: 768px) {
-    .book-row {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Container for the Logos and Title */
 .title-container {
     display: flex;
@@ -246,21 +240,65 @@ body {
     justify-content: center;
     gap: 10px; /* Space between logos and text */
     animation: fadeInBlurred 2s ease-out forwards;
+    padding: 0 15px;
 }
 
 /* Styling the Logos */
 .header-logo {
-    height: 20px; /* Adjust height based on your preference */
+    height: 35px; /* Slightly taller for visibility */
     width: auto;
-    border-radius: 50%; /* Optional: Makes the logo circular if it's a square image */
+    border-radius: 50%;
     opacity: 0.8;
-    mix-blend-mode: multiply; /* Optional: Helps blend white backgrounds into the pastel page */
+    mix-blend-mode: multiply;
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.05));
 }
 
-/* Ensure the title-reveal doesn't have its own separate animation that conflicts */
 .title-reveal {
-    margin: 0; /* Remove default margins to keep alignment tight */
-    /* animation is now handled by title-container if preferred, 
-       or keep it here for the letter-spacing effect */
+    margin: 0;
+}
+
+/* --- OPTIMIZATION FOR SCREEN SCALING (NEW) --- */
+
+/* For Mobile Phones (and small tablets) */
+@media (max-width: 768px) {
+    .title-reveal {
+        font-size: 1.6rem; /* Scale down title for small screens */
+        letter-spacing: 4px;
+    }
+    
+    .header-logo {
+        height: 25px; /* Smaller logos on mobile */
+    }
+
+    .hub-container {
+        grid-template-columns: 1fr; /* Switch to 1 card per row */
+        width: 90%;
+        gap: 20px;
+    }
+
+    .hub-card {
+        height: 180px; /* Slightly shorter cards for better fitting */
+    }
+
+    .book-row {
+        grid-template-columns: 1fr; /* 1 image per row in Books page */
+    }
+    
+    .main-header {
+        margin-top: 30px;
+    }
+}
+
+/* For very small devices (portrait phones) */
+@media (max-width: 480px) {
+    .title-reveal {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+    
+    .card-text {
+        font-size: 0.85rem;
+        bottom: 15px;
+        left: 15px;
+    }
 }
