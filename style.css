@@ -238,3 +238,29 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Container for the Logos and Title */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between logos and text */
+    animation: fadeInBlurred 2s ease-out forwards;
+}
+
+/* Styling the Logos */
+.header-logo {
+    height: 50px; /* Adjust height based on your preference */
+    width: auto;
+    border-radius: 50%; /* Optional: Makes the logo circular if it's a square image */
+    opacity: 0.8;
+    mix-blend-mode: multiply; /* Optional: Helps blend white backgrounds into the pastel page */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.05));
+}
+
+/* Ensure the title-reveal doesn't have its own separate animation that conflicts */
+.title-reveal {
+    margin: 0; /* Remove default margins to keep alignment tight */
+    /* animation is now handled by title-container if preferred, 
+       or keep it here for the letter-spacing effect */
+}
