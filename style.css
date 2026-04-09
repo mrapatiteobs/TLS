@@ -1,21 +1,40 @@
 :root {
-    --cyan: #00f2ff;
-    --dark: #050505;
-    --glass: rgba(255, 255, 255, 0.1);
+    /* Defining the new Pastel Palette */
+    --p-blue: #D7EAF3;   /* Soft Sky */
+    --p-pink: #FAD4D8;   /* Petal Pink */
+    --p-green: #E1F0DA;  /* Pale Mint */
+    --p-purple: #E6E6FA; /* Lavender */
+    
+    /* Functional Colors */
+    --light-bg: #FDFDFD; /* Clean White */
+    --main-text: #4A4A4A; /* Soft Grey (not harsh black) */
+    --glass: rgba(255, 255, 255, 0.7); /* Frosted Glass */
 }
 
 body {
-    background-color: var(--dark);
+    background-color: var(--light-bg);
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* Keeps the museum vibe contained */
+    overflow: hidden; /* Contains the background shimmer */
+    color: var(--main-text);
 }
 
-/* --- Animated Title --- */
+/* --- Animated Shimmer Background --- */
+.shimmer-background {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #FDFDFD, var(--p-blue), var(--p-pink), var(--p-purple), #FDFDFD);
+    background-size: 400% 400%;
+    animation: gradientShimmer 15s ease infinite;
+    opacity: 0.4; /* Keep it very subtle */
+}
+
+/* --- Softer Title --- */
 .main-header {
     margin-top: 60px;
     text-align: center;
@@ -23,35 +42,47 @@ body {
 }
 
 .title-reveal {
-    font-family: 'Syncopate', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 12px;
-    color: white;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300; /* Light weight for elegance */
+    font-size: 2.8rem;
+    letter-spacing: 10px;
+    color: var(--main-text);
     text-transform: uppercase;
-    animation: fadeInDown 1.5s ease-out forwards;
-    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    animation: fadeInBlurred 2s ease-out forwards;
 }
 
-/* --- The Hub Grid --- */
+.header-line {
+    width: 80px;
+    height: 1px;
+    background-color: rgba(74, 74, 74, 0.2);
+    margin: 15px auto;
+}
+
+/* --- The Pastel Grid --- */
 .hub-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    margin-top: 50px;
+    gap: 25px;
+    margin-top: 40px;
     width: 80%;
-    max-width: 1000px;
+    max-width: 900px;
 }
 
+/* Base Card Styling */
 .hub-card {
     position: relative;
-    height: 250px;
-    border: 1px solid var(--glass);
+    height: 220px;
+    background-color: white; /* Clean base */
+    border: 1px solid rgba(0, 0, 0, 0.03); /* Barely visible */
+    border-radius: 12px; /* Softened edges */
     overflow: hidden;
     text-decoration: none;
-    opacity: 0; /* Starts invisible for animation */
-    transform: translateY(30px);
-    animation: slideUp 0.8s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.2s); /* Staggered entrance */
+    opacity: 0; /* Staggered entrance start */
+    transform: translateY(20px);
+    animation: slideUpSoft 1s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.25s);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Very light lift */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .card-image {
@@ -59,49 +90,61 @@ body {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-    filter: grayscale(80%) brightness(0.5);
+    transition: transform 0.8s ease;
+    filter: brightness(1); /* No more harsh grayscale start */
+    opacity: 0.9;
 }
 
+/* Softer bottom overlay */
 .card-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,0.7) 0%, transparent 100%);
+    transition: 0.5s;
 }
 
+/* Beautifully Animated Font (Soft Tech) */
 .card-text {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--cyan);
-    font-size: 1.2rem;
+    bottom: 25px;
+    left: 25px;
+    font-family: 'Space Mono', monospace;
+    color: var(--main-text);
+    font-size: 1rem;
+    font-weight: 400;
     letter-spacing: 2px;
-    transition: 0.4s;
+    transition: all 0.5s ease;
 }
 
-/* --- Hover Effects --- */
-.hub-card:hover .card-image {
-    transform: scale(1.1);
-    filter: grayscale(0%) brightness(1);
-}
-
+/* --- Hover Effects per Color --- */
 .hub-card:hover {
-    border: 1px solid var(--cyan);
-    box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+    transform: perspective(1000px) scale(1.02); /* Lifts slightly */
 }
+
+/* Assigning the specific pastel glow on hover */
+.pastel-blue:hover  { box-shadow: 0 10px 30px var(--p-blue);   border-color: var(--p-blue);   }
+.pastel-pink:hover  { box-shadow: 0 10px 30px var(--p-pink);   border-color: var(--p-pink);   }
+.pastel-green:hover { box-shadow: 0 10px 30px var(--p-green);  border-color: var(--p-green);  }
+.pastel-purple:hover{ box-shadow: 0 10px 30px var(--p-purple); border-color: var(--p-purple); }
 
 .hub-card:hover .card-text {
-    transform: translateX(10px);
-    text-shadow: 0 0 10px var(--cyan);
+    transform: translateX(8px);
+    font-weight: 700;
+    color: #000; /* Subtle text pop */
 }
 
 /* --- Animations --- */
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-50px); filter: blur(10px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+@keyframes gradientShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-@keyframes slideUp {
+@keyframes fadeInBlurred {
+    from { opacity: 0; filter: blur(15px); letter-spacing: 25px; }
+    to { opacity: 1; filter: blur(0); letter-spacing: 10px; }
+}
+
+@keyframes slideUpSoft {
     to { opacity: 1; transform: translateY(0); }
 }
