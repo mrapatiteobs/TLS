@@ -1,35 +1,41 @@
-// 1. Setup your image list
-// Add your filenames here manually as they are uploaded to GitHub
-const images = [
-    'pic1.jpg',
-    'pic2.jpg',
-    'pic3.jpg',
-    'pic4.jpg'
-];
+// 1. Your image names in the folder
+const imageFiles = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg']; 
 
-let currentIndex = 0;
-const carouselDiv = document.getElementById('carousel');
-const counterDiv = document.getElementById('counter');
+const track = document.getElementById('slider-track');
+const counter = document.getElementById('counter');
+let index = 0;
 
-// 2. Function to update display
-function updateDisplay() {
-    const imgPath = `images/${images[currentIndex]}`; // Assumes images are in a folder named 'images'
-    carouselDiv.innerHTML = `<img src="${imgPath}" alt="Manuscript ${currentIndex + 1}">`;
-    counterDiv.innerText = `${currentIndex + 1} / ${images.length}`;
+// 2. Create the slides
+function initGallery() {
+    imageFiles.forEach(file => {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        // Adjust the path to where your images are on GitHub
+        slide.innerHTML = `<img src="images/${file}" alt="Manuscript">`;
+        track.appendChild(slide);
+    });
+    updateCounter();
 }
 
-// 3. Navigation logic
+// 3. Slide Logic
 function moveSlide(direction) {
-    currentIndex += direction;
+    index += direction;
     
-    if (currentIndex >= images.length) {
-        currentIndex = 0; // Loop back to start
-    } else if (currentIndex < 0) {
-        currentIndex = images.length - 1; // Loop to end
-    }
+    // Boundary checks
+    if (index >= imageFiles.length) index = 0;
+    if (index < 0) index = imageFiles.length - 1;
+
+    // Move the track by the width of the viewport
+    const moveAmount = index * -90; // -90 because viewport is 90vw
+    track.style.transform = `translateX(${moveAmount}vw)`;
     
-    updateDisplay();
+    updateCounter();
 }
 
-// Initialize
-updateDisplay();
+function updateCounter() {
+    let current = index + 1;
+    let total = imageFiles.length;
+    counter.innerText = `${current.toString().padStart(2, '0')} / ${total.toString().padStart(2, '0')}`;
+}
+
+initGallery();
