@@ -1,40 +1,107 @@
-/* --- Navigation Styling --- */
-.museum-nav {
+:root {
+    --cyan: #00f2ff;
+    --dark: #050505;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--dark);
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Keeps the museum vibe contained */
 }
 
-.nav-tab {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 10px 20px;
-    border: 1px solid transparent;
-    transition: all 0.4s ease;
-}
-
-.nav-tab:hover {
-    color: var(--cyan);
-    border: 1px solid var(--cyan);
-    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
-    background: rgba(0, 242, 255, 0.05);
-}
-
-.nav-tab.active {
-    color: var(--cyan);
-    border-bottom: 1px solid var(--cyan);
-}
-
-/* --- Keep your existing slider and header styles from before --- */
-.museum-title {
-    font-size: 2.5rem; /* Slightly smaller to fit the longer title */
-    letter-spacing: 0.5rem;
-    font-weight: 200;
-    color: var(--cyan);
-    text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+/* --- Animated Title --- */
+.main-header {
+    margin-top: 60px;
     text-align: center;
+    position: relative;
+}
+
+.title-reveal {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 12px;
+    color: white;
+    text-transform: uppercase;
+    animation: fadeInDown 1.5s ease-out forwards;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* --- The Hub Grid --- */
+.hub-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.hub-card {
+    position: relative;
+    height: 250px;
+    border: 1px solid var(--glass);
+    overflow: hidden;
+    text-decoration: none;
+    opacity: 0; /* Starts invisible for animation */
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: calc(var(--i) * 0.2s); /* Staggered entrance */
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: grayscale(80%) brightness(0.5);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.card-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: var(--cyan);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    transition: 0.4s;
+}
+
+/* --- Hover Effects --- */
+.hub-card:hover .card-image {
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(1);
+}
+
+.hub-card:hover {
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+}
+
+.hub-card:hover .card-text {
+    transform: translateX(10px);
+    text-shadow: 0 0 10px var(--cyan);
+}
+
+/* --- Animations --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); filter: blur(10px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
 }
