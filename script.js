@@ -1,5 +1,5 @@
 // 1. Your image names in the folder
-const imageFiles = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg']; 
+const imageFiles = ['pic1.png', 'pic2.png', 'pic3.png']; 
 
 const track = document.getElementById('slider-track');
 const counter = document.getElementById('counter');
