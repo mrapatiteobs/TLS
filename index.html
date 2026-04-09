@@ -1,1 +1,41 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuscripts | Digital Museum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1 class="glitch" data-text="MANUSCRIPTS">MANUSCRIPTS</h1>
+        <p class="subtitle">A Peer-Sourced Poetry Archive</p>
+    </header>
+
+    <main>
+        <section class="museum-case">
+            <div class="carousel-container">
+                <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <div class="slide-display" id="carousel">
+                    </div>
+                <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            <div class="image-counter" id="counter">1 / 10</div>
+        </section>
+
+        <section class="submission-vault">
+            <h2>Submit to the Vault</h2>
+            <div class="form-container">
+                <iframe src="YOUR_GOOGLE_FORM_LINK_HERE" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Archive Index</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
