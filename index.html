@@ -3,38 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuscripts | Digital Museum</title>
+    <title>Manuscripts | Archive</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1 class="glitch" data-text="MANUSCRIPTS">MANUSCRIPTS</h1>
-        <p class="subtitle">A Peer-Sourced Poetry Archive</p>
+        <h1 class="museum-title">MANUSCRIPTS</h1>
+        <div class="divider"></div>
     </header>
 
     <main>
-        <section class="museum-case">
-            <div class="carousel-container">
-                <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <div class="slide-display" id="carousel">
-                    </div>
-                <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
-            </div>
-            <div class="image-counter" id="counter">1 / 10</div>
+        <section class="gallery-viewport">
+            <div class="slider-track" id="slider-track">
+                </div>
+            
+            <button class="nav-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="nav-btn next" onclick="moveSlide(1)">&#10095;</button>
         </section>
 
-        <section class="submission-vault">
-            <h2>Submit to the Vault</h2>
-            <div class="form-container">
-                <iframe src="YOUR_GOOGLE_FORM_LINK_HERE" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <div class="counter" id="counter">01 / 01</div>
+
+        <section class="submission-area">
+            <h3>Contribute to the Archive</h3>
+            <div class="form-wrapper">
+                <iframe src="YOUR_GOOGLE_FORM_LINK_HERE" width="100%" height="500" frameborder="0">Loading…</iframe>
             </div>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Archive Index</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
