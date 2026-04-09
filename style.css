@@ -1,98 +1,40 @@
-:root {
-    --black: #0a0a0a;
-    --cyan: #00f2ff;
-    --glass: rgba(255, 255, 255, 0.03);
+/* --- Navigation Styling --- */
+.museum-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
 }
 
-body {
-    background-color: var(--black);
-    color: white;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+.nav-tab {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
 }
 
-header {
-    text-align: center;
-    padding: 40px 0;
+.nav-tab:hover {
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    background: rgba(0, 242, 255, 0.05);
 }
 
+.nav-tab.active {
+    color: var(--cyan);
+    border-bottom: 1px solid var(--cyan);
+}
+
+/* --- Keep your existing slider and header styles from before --- */
 .museum-title {
-    font-size: 3rem;
-    letter-spacing: 0.8rem;
+    font-size: 2.5rem; /* Slightly smaller to fit the longer title */
+    letter-spacing: 0.5rem;
     font-weight: 200;
     color: var(--cyan);
     text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
-}
-
-.divider {
-    width: 100px;
-    height: 1px;
-    background: var(--cyan);
-    margin: 20px auto;
-}
-
-/* The Sliding Viewport */
-.gallery-viewport {
-    position: relative;
-    width: 90vw;
-    height: 60vh; /* Fits the webpage height well */
-    margin: 0 auto;
-    overflow: hidden; /* Hides the images not in view */
-    border: 1px solid var(--glass);
-    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, rgba(0,0,0,1) 100%);
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth museum glide */
-    height: 100%;
-}
-
-.slide {
-    min-width: 90vw; /* Matches viewport width */
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.slide img {
-    max-width: 80%;
-    max-height: 90%;
-    object-fit: contain; /* Keeps aspect ratio perfect */
-    box-shadow: 0 0 40px rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Navigation */
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--cyan);
-    font-size: 3rem;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 10;
-}
-
-.nav-btn:hover { opacity: 0.5; }
-.prev { left: 20px; }
-.next { right: 20px; }
-
-.counter {
-    text-align: center;
-    padding: 20px;
-    font-family: monospace;
-    letter-spacing: 2px;
-}
-
-.submission-area {
-    margin-top: 100px;
-    padding: 50px;
-    background: var(--glass);
     text-align: center;
 }
