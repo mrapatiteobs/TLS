@@ -244,13 +244,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Space between logos and text */
+    gap: 10px; /* Space between logos and text */
     animation: fadeInBlurred 2s ease-out forwards;
 }
 
 /* Styling the Logos */
 .header-logo {
-    height: 50px; /* Adjust height based on your preference */
+    height: 20px; /* Adjust height based on your preference */
     width: auto;
     border-radius: 50%; /* Optional: Makes the logo circular if it's a square image */
     opacity: 0.8;
