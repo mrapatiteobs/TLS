@@ -372,4 +372,33 @@ body {
         padding: 15px;
     }
 }
+
+
+
+/* MIssion statement for Meetpage*/
+.mission-statement {
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--main-text);
+    max-width: 600px; /* Keeps the text from stretching too wide */
+    margin: 20px auto; /* Centers it and adds spacing */
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+    animation: fadeInBlurred 2.5s ease-out forwards;
+}
+
+/* Adjusting the tagline spacing to avoid using <br><br> */
+.tagline {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .mission-statement {
+        font-size: 0.9rem;
+        padding: 0 20px;
+    }
+}
 /* --- end--- */
